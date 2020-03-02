@@ -42,6 +42,13 @@ class TareaController extends Controller
         //
         // dd($request->input('tarea')); // muérete y te da el parámetro $request->all()
 
+        $request->validate([
+            'tarea' => 'required|max:255',
+            'descripcion' => 'required',
+            'fecha_entrega' => 'required|date',
+            'prioridad' => 'required|int|min:1|max:3',
+        ]);
+
         $tarea = new Tarea();
         $tarea->tarea = $request->tarea;
         $tarea->descripcion = $request->descripcion;
@@ -90,6 +97,13 @@ class TareaController extends Controller
      */
     public function update(Request $request, Tarea $tarea)
     {
+        $request->validate([
+            'tarea' => 'required|max:255',
+            'descripcion' => 'required',
+            'fecha_entrega' => 'required|date',
+            'prioridad' => 'required|int|min:1|max:3',
+        ]);
+
         $tarea->tarea = $request->tarea;
         $tarea->descripcion = $request->descripcion;
         $tarea->fecha_entrega = $request->fecha_entrega;
