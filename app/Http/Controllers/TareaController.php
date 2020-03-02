@@ -59,12 +59,15 @@ class TareaController extends Controller
      * @param  \App\Tarea  $tarea
      * @return \Illuminate\Http\Response
      */
-    public function show(Tarea $tarea)
+    public function show($tarea)
     {
         //
-        dd($tarea);
-        return view('tareas.tareaShow')
-        ->with(['tarea=> $tarea']);
+        //dd($tarea);
+        //return view('tareas.tareaShow')->with(['tarea => $tarea']);
+
+        //return view('tareas.tareaShow', compact('tarea')); // <-------- Intentar hacerlo con esto, poner en un td la información
+        return view('tareas.tareaShow', ['tarea'=>Tarea::find($tarea)]);
+
     }
 
     /**
@@ -75,7 +78,7 @@ class TareaController extends Controller
      */
     public function edit(Tarea $tarea)
     {
-        //
+        return view('tareas.tareaForm', compact('tarea'));
     }
 
     /**
@@ -87,7 +90,14 @@ class TareaController extends Controller
      */
     public function update(Request $request, Tarea $tarea)
     {
-        //
+        $tarea->tarea = $request->tarea;
+        $tarea->descripcion = $request->descripcion;
+        $tarea->fecha_entrega = $request->fecha_entrega;
+        $tarea->prioridad = $request->prioridad;
+        // dd($tarea);
+        $tarea->save();
+
+        return redirect()->route('tarea.show', $tarea->id);
     }
 
     /**
@@ -98,6 +108,7 @@ class TareaController extends Controller
      */
     public function destroy(Tarea $tarea)
     {
-        //
+        $tarea->delete();
+        return redirect()->route('tarea.index');
     }
 }

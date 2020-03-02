@@ -8,8 +8,9 @@
                 <div class="card-header">Listado de tareas</div>
 
                 <div class="card-body">
-                <a href="{{action('TareaController@create')}}" class="btn btn-success btn-sm">Nueva tarea</a>
-                    <hr>
+                <a href="{{action('TareaController@create')}}" class="btn btn-primary btn-sm">Nueva tarea</a>
+                    {{--- <hr> ---}}
+                    <br> <br>
                     <table class="table">
                         <tr>
                             <th>ID</th>
@@ -21,7 +22,7 @@
                             <tr>
                                 <td>{{ $tarea->id }}</td>
                                 <td>
-                                    <a href="{{ route('tarea.show', $tarea->id)}}" > {{$tarea->tarea }} </a>
+                                    <a href="{{ route('tarea.show', $tarea->id)}}">{{$tarea->tarea }} </a>
                                 </td>
                                 <td>{{ $tarea->descripcion }}</td>
                             </tr>

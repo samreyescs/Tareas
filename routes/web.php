@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('tarea', 'TareaController');
 
+Route::get('tarea/{id?}', 'TareaController@show')->name('tarea.show'); // Ruta para mostrar los detalles de una tarea
+
 /*
 Route::get('prueba/{nombre?}', function($nombre = 'extraño') {
     $nombre = strtoupper($nombre);
