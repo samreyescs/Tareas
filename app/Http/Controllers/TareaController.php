@@ -47,7 +47,7 @@ class TareaController extends Controller
         $tarea = new Tarea();
         $tarea->tarea = $request->tarea;
         $tarea->descripcion = $request->descripcion ?? '';
-        $tarea->fecha_entrega = $request->fecha;
+        $tarea->fecha_entrega = $request->fecha_entrega;
         $tarea->prioridad = $request->prioridad;
         $tarea->save();
         //dd($request->all()); // los datos que estas recibiendo del form

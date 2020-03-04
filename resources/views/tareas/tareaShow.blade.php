@@ -25,12 +25,13 @@
                     </div>
 
 
-                      <a href="{{action('TareaController@edit', $tarea->id)}}" class="btn btn-warning btn-sm" tabindex="-1" role="button" aria-disabled="true">Editar</a>
+                      {{--<a href="{{action('TareaController@edit', $tarea->id)}}" class="btn btn-warning btn-sm" tabindex="-1" role="button" aria-disabled="true">Editar</a>--}}
 
                       <hr>
                       <form action="{{route('tarea.destroy', $tarea->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
+                        <a href="{{action('TareaController@edit', $tarea->id)}}" class="btn btn-warning btn-sm" tabindex="-1" role="button" aria-disabled="true">Editar</a>
                         <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
                       </form>
 
