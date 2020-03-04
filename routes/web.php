@@ -19,16 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('tarea', 'TareaController');
+//Route::get('prueba', function(){
+//    return view('vista-prueba');
+//});
 
-Route::get('tarea/{id?}', 'TareaController@show')->name('tarea.show'); // Ruta para mostrar los detalles de una tarea
-
-/*
-Route::get('prueba/{nombre?}', function($nombre = 'extraño') {
-    $nombre = strtoupper($nombre);
-
-    return view('vista_prueba')->with(['info' => $nombre]);
+Route::get('prueba/{nom?}', function($nom = 'desconocido'){ // La interrogacion hace que el prarametro sea optional de poner  y ponemos un valor pro default el nom que es desconocido
+    $nom = strtoupper($nom);
+    return view('vista-prueba')->with(['info' => $nom]);
 });
-*/
 
 
+Route::resource('tarea', 'TareaController');

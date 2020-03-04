@@ -14,10 +14,9 @@ class TareaController extends Controller
      */
     public function index()
     {
-        // $tareas = Consultar tareas de tabla tareas
-        $tareas = Tarea::all();
-        // dd($tareas);
+        $tareas = Tarea::all(); // Se le pide que de modelo tarea traigaa todo
         return view('tareas.tareaIndex', compact('tareas'));
+        //return view('tareas/tareaIndex')->with(['tareas' => @tareas]);
     }
 
     /**
@@ -27,7 +26,6 @@ class TareaController extends Controller
      */
     public function create()
     {
-        //
         return view('tareas.tareaForm');
     }
 
@@ -39,25 +37,22 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // dd($request->input('tarea')); // muérete y te da el parámetro $request->all()
-
         $request->validate([
             'tarea' => 'required|max:255',
             'descripcion' => 'required',
             'fecha_entrega' => 'required|date',
-            'prioridad' => 'required|int|min:1|max:3',
+            'prioridad' => 'required|int|min:1|max:5'
         ]);
 
         $tarea = new Tarea();
         $tarea->tarea = $request->tarea;
-        $tarea->descripcion = $request->descripcion;
-        $tarea->fecha_entrega = $request->fecha_entrega;
+        $tarea->descripcion = $request->descripcion ?? '';
+        $tarea->fecha_entrega = $request->fecha;
         $tarea->prioridad = $request->prioridad;
-        // dd($tarea);
         $tarea->save();
-
-        return redirect()->route('tarea.index');
+        //dd($request->all()); // los datos que estas recibiendo del form
+        //dd($request->tarea);
+        return  redirect()->route('tarea.index');
     }
 
     /**
@@ -66,15 +61,9 @@ class TareaController extends Controller
      * @param  \App\Tarea  $tarea
      * @return \Illuminate\Http\Response
      */
-    public function show($tarea)
+    public function show(Tarea $tarea)
     {
-        //
-        //dd($tarea);
-        //return view('tareas.tareaShow')->with(['tarea => $tarea']);
-
-        //return view('tareas.tareaShow', compact('tarea')); // <-------- Intentar hacerlo con esto, poner en un td la información
-        return view('tareas.tareaShow', ['tarea'=>Tarea::find($tarea)]);
-
+        return view('tareas.tareaShow', compact('tarea'));// mete compact
     }
 
     /**
@@ -95,7 +84,7 @@ class TareaController extends Controller
      * @param  \App\Tarea  $tarea
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tarea $tarea)
+    public function update(Request $request, Tarea $tarea) // el request es el formulario con lo que  queremos acutualizar y la tarea es al que queremos que se modifique
     {
         $request->validate([
             'tarea' => 'required|max:255',
@@ -123,6 +112,6 @@ class TareaController extends Controller
     public function destroy(Tarea $tarea)
     {
         $tarea->delete();
-        return redirect()->route('tarea.index');
+        return  redirect()->route('tarea.index');
     }
 }

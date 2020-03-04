@@ -8,6 +8,8 @@
                 <div class="card-header">Detalle de tarea</div>
 
                 <div class="card-body">
+                    <a href="{{action('TareaController@index')}}" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Regresar</a>
+                    <hr>
 
                     <h2>{{$tarea->tarea}}</h2>
                     <p>{{$tarea->descripcion}}</p>
@@ -22,47 +24,19 @@
                         </div>
                     </div>
 
-                      <a href="{{action('TareaController@index')}}" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Regresar</a>
+
                       <a href="{{action('TareaController@edit', $tarea->id)}}" class="btn btn-warning btn-sm" tabindex="-1" role="button" aria-disabled="true">Editar</a>
 
                       <hr>
                       <form action="{{route('tarea.destroy', $tarea->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Borrar</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
                       </form>
 
 
-                    {{--
-                        <br> <br>
-                        <table class="table">
-                            <tr>
-                                <th>ID</th>
-                                <th>Tarea</th>
-                                <th>Descripción</th>
-                            </tr>
-                            <tr>
-                                <td>{{ $tarea->id }}</td>
-                                <td>
-                                    <a href="{{ route('tarea.show', $tarea->id)}}">{{$tarea->tarea }} </a>
-                                </td>
-                                <td>{{ $tarea->descripcion }}</td>
-                            </tr>
-                        </table>
-
-                        <a href="{{action('TareaController@index')}}" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Regresar</a>
-                          <a href="{{action('TareaController@edit', $tarea->id)}}" class="btn btn-warning btn-sm" tabindex="-1" role="button" aria-disabled="true">Editar</a>
-
-                          <hr>
-                          <form action="{{route('tarea.destroy', $tarea->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Borrar</button>
-                          </form
-                        --}}
-
                 </div>
-
+                </div>
             </div>
         </div>
     </div>
