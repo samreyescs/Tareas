@@ -49,8 +49,9 @@
                           {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Detalles de la tarea...']) !!}
                         </div>
 
+
                         <div class="form-row">
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-4">
                             <label for="prioridad">Prioridad</label>
                             {{--<select name="prioridad" class="form-control">
                               <option value="1" value="{{isset($tarea) && $tarea->prioridad == 1 ? 'selected' : ''}}">Baja</option>
@@ -59,7 +60,11 @@
                             </select>--}}
                             {!! Form::select('prioridad', ['1'  => 'Baja', '2' => 'Media', '3' => 'Alta'], null, ['class' => 'form-control']) !!}
                           </div>
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-4">
+                            <label for="categoria_id">Categoria</label>
+                            {!! Form::select('categoria_id', $categorias, null, ['class' => 'form-control']) !!}
+                          </div>
+                          <div class="form-group col-md-4">
                             <label for="fecha_entrega">Fecha límite</label>
                             {{--<input type="date" class="form-control" name="fecha_entrega" value="{{$tarea->fecha_entrega ?? ''}}">--}}
                             {!! Form::date('fecha_entrega', null, ['class' => 'form-control']) !!}

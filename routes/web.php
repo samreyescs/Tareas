@@ -23,10 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 //    return view('vista-prueba');
 //});
 
-Route::get('prueba/{nom?}', function($nom = 'desconocido'){ // La interrogacion hace que el prarametro sea optional de poner  y ponemos un valor pro default el nom que es desconocido
-    $nom = strtoupper($nom);
-    return view('vista-prueba')->with(['info' => $nom]);
-});
-
-
-Route::resource('tarea', 'TareaController');
+Route::resource('tarea', 'TareaController');//->middleware('auth');

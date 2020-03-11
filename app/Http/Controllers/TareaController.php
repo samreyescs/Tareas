@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Tarea;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 class TareaController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth')->except(['index', 'show']); //only([])
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +32,9 @@ class TareaController extends Controller
      */
     public function create()
     {
-        return view('tareas.tareaForm');
+        $categorias = Categoria::all() -> pluck('nombre', 'id');
+        //dd($categorias);
+        return view('tareas.tareaForm', compact('categorias'));
     }
 
     /**
@@ -45,10 +53,12 @@ class TareaController extends Controller
         ]);
 
         $tarea = new Tarea();
+        $tarea->user_id = \Auth::id();
         $tarea->tarea = $request->tarea;
         $tarea->descripcion = $request->descripcion ?? '';
         $tarea->fecha_entrega = $request->fecha_entrega;
         $tarea->prioridad = $request->prioridad;
+        $tarea->categoria_id = $request->categoria_id;
         $tarea->save();
         //dd($request->all()); // los datos que estas recibiendo del form
         //dd($request->tarea);
@@ -74,7 +84,8 @@ class TareaController extends Controller
      */
     public function edit(Tarea $tarea)
     {
-        return view('tareas.tareaForm', compact('tarea'));
+        $categorias = Categoria::all() -> pluck('nombre', 'id');
+        return view('tareas.tareaForm', compact('tarea', 'categorias'));
     }
 
     /**
@@ -97,6 +108,7 @@ class TareaController extends Controller
         $tarea->descripcion = $request->descripcion;
         $tarea->fecha_entrega = $request->fecha_entrega;
         $tarea->prioridad = $request->prioridad;
+        $tarea->categoria_id = $request->categoria_id;
         // dd($tarea);
         $tarea->save();
 

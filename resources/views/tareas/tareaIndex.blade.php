@@ -16,6 +16,8 @@
                             <th>ID</th>
                             <th>Tarea</th>
                             <th>Descripción</th>
+                            <th>Categoria</th>
+                            <th>Usuario</th>
                         </tr>
 
                         @foreach ($tareas as $tarea)
@@ -25,6 +27,11 @@
                                     <a href="{{ route('tarea.show', $tarea->id)}}">{{$tarea->tarea }} </a>
                                 </td>
                                 <td>{{ $tarea->descripcion }}</td>
+                                <td>{{ $tarea->categoria->nombre }}</td>
+                                <td>
+                                    {{ $tarea->user->name }} <br>
+                                    {{ $tarea->user->email }}
+                                </td>
                             </tr>
                         @endforeach
                     </table>
