@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tema')
 
 @section('content')
 <div class="container">
@@ -21,18 +21,18 @@
                         </tr>
 
                         @foreach ($tareas as $tarea)
-                            <tr>
-                                <td>{{ $tarea->id }}</td>
-                                <td>
-                                    <a href="{{ route('tarea.show', $tarea->id)}}">{{$tarea->tarea }} </a>
-                                </td>
-                                <td>{{ $tarea->descripcion }}</td>
-                                <td>{{ $tarea->categoria->nombre }}</td>
-                                <td>
-                                    {{ $tarea->user->name }} <br>
-                                    {{ $tarea->user->email }}
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{ $tarea->id }}</td>
+                            <td>
+                                <a href="{{ route('tarea.show', $tarea->id) }}"> {{ $tarea->tarea }} </a>
+                            </td>
+                            <td>{{ $tarea->descripcion }}</td>
+                            <td>{{ $tarea->categoria->nombre }}</td>
+                            <td>
+                                {{ $tarea->user->name }} <br>
+                                {{ $tarea->user->email }}
+                            </td>
+                        </tr>
                         @endforeach
                     </table>
                 </div>

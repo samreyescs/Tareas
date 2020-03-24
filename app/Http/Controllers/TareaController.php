@@ -32,7 +32,7 @@ class TareaController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all() -> pluck('nombre', 'id');
+        $categorias = Categoria::all()->pluck('nombre', 'id');
         //dd($categorias);
         return view('tareas.tareaForm', compact('categorias'));
     }
@@ -55,7 +55,7 @@ class TareaController extends Controller
         $tarea = new Tarea();
         $tarea->user_id = \Auth::id();
         $tarea->tarea = $request->tarea;
-        $tarea->descripcion = $request->descripcion ?? '';
+        $tarea->descripcion = $request->descripcion; //?? ''
         $tarea->fecha_entrega = $request->fecha_entrega;
         $tarea->prioridad = $request->prioridad;
         $tarea->categoria_id = $request->categoria_id;
@@ -84,7 +84,7 @@ class TareaController extends Controller
      */
     public function edit(Tarea $tarea)
     {
-        $categorias = Categoria::all() -> pluck('nombre', 'id');
+        $categorias = Categoria::all()->pluck('nombre', 'id');
         return view('tareas.tareaForm', compact('tarea', 'categorias'));
     }
 

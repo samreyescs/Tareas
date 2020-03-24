@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.tema')
 
-@section('content')
-<div class="container">
+@section('content') 
+{{--
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -20,4 +21,8 @@
         </div>
     </div>
 </div>
+    --}}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Página HOME</h1>
 @endsection
